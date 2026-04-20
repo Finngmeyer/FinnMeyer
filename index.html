@@ -4,20 +4,21 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Finn Meyer | Manufacturing & Supply Chain Management</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Fraunces:wght@500;600;700&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --navy: #1e293b;
-      --navy-light: #334155;
-      --blue: #3b82f6;
-      --blue-light: #60a5fa;
-      --slate: #64748b;
+      --navy: #0f172a;
+      --navy-light: #1e293b;
+      --amber: #f59e0b;
+      --amber-light: #fbbf24;
+      --amber-dark: #d97706;
+      --slate: #475569;
       --slate-light: #94a3b8;
-      --gray-50: #f8fafc;
-      --gray-100: #f1f5f9;
+      --cream: #fafaf7;
+      --cream-warm: #f5f3ee;
       --white: #ffffff;
       --text: #0f172a;
-      --border: #e2e8f0;
+      --border: #e7e5e0;
     }
 
     * { 
@@ -28,7 +29,7 @@
 
     body {
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      background: var(--white);
+      background: var(--cream);
       color: var(--text);
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
@@ -38,28 +39,42 @@
     nav {
       position: fixed;
       top: 0; left: 0; right: 0;
-      background: rgba(255, 255, 255, 0.98);
-      backdrop-filter: blur(10px);
+      background: rgba(250, 250, 247, 0.9);
+      backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--border);
       z-index: 100;
       padding: 0 2rem;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      height: 64px;
+      height: 68px;
     }
 
     .nav-logo {
+      font-family: 'Fraunces', serif;
       font-weight: 600;
       color: var(--navy);
-      font-size: 1.1rem;
-      letter-spacing: -0.02em;
+      font-size: 1.25rem;
+      letter-spacing: -0.01em;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .nav-logo::before {
+      content: '';
+      width: 8px;
+      height: 8px;
+      background: var(--amber);
+      border-radius: 50%;
+      display: inline-block;
     }
 
     .nav-links {
       display: flex;
-      gap: 2rem;
+      gap: 2.5rem;
       list-style: none;
+      align-items: center;
     }
 
     .nav-links a {
@@ -68,51 +83,115 @@
       font-size: 0.9rem;
       font-weight: 500;
       transition: color 0.2s;
+      position: relative;
     }
 
     .nav-links a:hover { 
-      color: var(--blue); 
+      color: var(--navy); 
+    }
+
+    .nav-cta {
+      background: var(--navy);
+      color: var(--white) !important;
+      padding: 0.5rem 1.25rem;
+      border-radius: 6px;
+      transition: background 0.2s;
+    }
+
+    .nav-cta:hover {
+      background: var(--amber-dark);
     }
 
     /* Hero Section */
     .hero {
-      min-height: 90vh;
-      background: var(--gray-50);
+      min-height: 100vh;
+      background: var(--cream);
       display: flex;
       align-items: center;
       padding: 8rem 2rem 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Decorative grid pattern */
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: 
+        linear-gradient(var(--border) 1px, transparent 1px),
+        linear-gradient(90deg, var(--border) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(ellipse at 80% 50%, black 0%, transparent 60%);
+      -webkit-mask-image: radial-gradient(ellipse at 80% 50%, black 0%, transparent 60%);
+      opacity: 0.4;
+      pointer-events: none;
     }
 
     .hero-content {
       max-width: 1200px;
       margin: 0 auto;
       width: 100%;
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1.3fr 1fr;
+      gap: 4rem;
+      align-items: center;
     }
 
     .hero-eyebrow {
-      font-size: 0.875rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 0.8rem;
       font-weight: 600;
-      letter-spacing: 0.05em;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
-      color: var(--blue);
-      margin-bottom: 1rem;
+      color: var(--amber-dark);
+      margin-bottom: 1.5rem;
+      padding: 0.4rem 0.9rem;
+      background: rgba(245, 158, 11, 0.1);
+      border: 1px solid rgba(245, 158, 11, 0.25);
+      border-radius: 100px;
+    }
+
+    .hero-eyebrow::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--amber);
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
     }
 
     h1 {
-      font-size: clamp(2.5rem, 5vw, 3.75rem);
-      font-weight: 700;
+      font-family: 'Fraunces', serif;
+      font-size: clamp(2.75rem, 5.5vw, 4.25rem);
+      font-weight: 600;
       color: var(--navy);
-      line-height: 1.1;
+      line-height: 1.05;
       margin-bottom: 1.5rem;
-      letter-spacing: -0.02em;
+      letter-spacing: -0.025em;
+    }
+
+    h1 em {
+      font-style: italic;
+      color: var(--amber-dark);
+      font-weight: 500;
     }
 
     .hero-subtitle {
-      font-size: 1.25rem;
+      font-size: 1.15rem;
       color: var(--slate);
-      max-width: 600px;
+      max-width: 520px;
       margin-bottom: 2.5rem;
-      line-height: 1.6;
+      line-height: 1.65;
       font-weight: 400;
     }
 
@@ -120,49 +199,204 @@
       display: flex;
       gap: 1rem;
       flex-wrap: wrap;
+      margin-bottom: 3rem;
     }
 
     .btn-primary {
-      background: var(--blue);
+      background: var(--navy);
       color: var(--white);
-      padding: 0.875rem 2rem;
-      border-radius: 6px;
+      padding: 0.95rem 1.75rem;
+      border-radius: 8px;
       text-decoration: none;
       font-weight: 600;
       font-size: 0.95rem;
-      transition: all 0.2s;
-      display: inline-block;
-      border: 2px solid var(--blue);
+      transition: all 0.25s;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .btn-primary::after {
+      content: '→';
+      transition: transform 0.25s;
     }
 
     .btn-primary:hover {
-      background: var(--blue-light);
-      border-color: var(--blue-light);
-      transform: translateY(-1px);
+      background: var(--amber-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 12px 24px rgba(217, 119, 6, 0.25);
+    }
+
+    .btn-primary:hover::after {
+      transform: translateX(4px);
     }
 
     .btn-secondary {
       background: transparent;
       color: var(--navy);
-      padding: 0.875rem 2rem;
-      border-radius: 6px;
+      padding: 0.95rem 1.75rem;
+      border-radius: 8px;
       text-decoration: none;
       font-weight: 600;
       font-size: 0.95rem;
-      transition: all 0.2s;
+      transition: all 0.25s;
       display: inline-block;
-      border: 2px solid var(--border);
+      border: 1.5px solid var(--navy);
     }
 
     .btn-secondary:hover {
-      border-color: var(--navy);
       background: var(--navy);
       color: var(--white);
+      transform: translateY(-2px);
+    }
+
+    .hero-meta {
+      display: flex;
+      gap: 2.5rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .meta-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    .meta-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--slate-light);
+    }
+
+    .meta-value {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--navy);
+    }
+
+    /* Hero visual card */
+    .hero-visual {
+      position: relative;
+      aspect-ratio: 4/5;
+      max-width: 400px;
+      justify-self: end;
+    }
+
+    .visual-card {
+      position: absolute;
+      inset: 0;
+      background: var(--white);
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      padding: 2rem;
+      box-shadow: 0 20px 60px rgba(15, 23, 42, 0.08);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow: hidden;
+    }
+
+    .visual-card::before {
+      content: '';
+      position: absolute;
+      top: -40px;
+      right: -40px;
+      width: 160px;
+      height: 160px;
+      background: var(--amber);
+      border-radius: 50%;
+      opacity: 0.15;
+    }
+
+    .visual-card::after {
+      content: '';
+      position: absolute;
+      bottom: -60px;
+      left: -60px;
+      width: 180px;
+      height: 180px;
+      background: var(--navy);
+      border-radius: 50%;
+      opacity: 0.06;
+    }
+
+    .visual-header {
+      position: relative;
+      z-index: 1;
+    }
+
+    .visual-badge {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--amber-dark);
+      padding: 0.3rem 0.7rem;
+      background: rgba(245, 158, 11, 0.12);
+      border-radius: 4px;
+      margin-bottom: 1rem;
+    }
+
+    .visual-title {
+      font-family: 'Fraunces', serif;
+      font-size: 1.75rem;
+      font-weight: 600;
+      color: var(--navy);
+      line-height: 1.2;
+      margin-bottom: 0.5rem;
+    }
+
+    .visual-subtitle {
+      font-size: 0.9rem;
+      color: var(--slate);
+    }
+
+    .visual-stats {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      gap: 1rem;
+    }
+
+    .visual-stat {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      padding: 0.75rem 0;
+      border-bottom: 1px dashed var(--border);
+    }
+
+    .visual-stat:last-child {
+      border-bottom: none;
+    }
+
+    .stat-key {
+      font-size: 0.85rem;
+      color: var(--slate);
+    }
+
+    .stat-val {
+      font-family: 'Fraunces', serif;
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--navy);
+    }
+
+    .stat-val em {
+      font-size: 0.8rem;
+      font-weight: 400;
+      color: var(--amber-dark);
+      font-style: normal;
+      margin-left: 0.25rem;
     }
 
     /* Sections */
     section { 
-      padding: 5rem 2rem; 
+      padding: 6rem 2rem; 
     }
 
     .container {
@@ -171,92 +405,143 @@
     }
 
     .section-header {
-      text-align: center;
       margin-bottom: 4rem;
       max-width: 700px;
-      margin-left: auto;
-      margin-right: auto;
     }
 
     .section-label {
-      font-size: 0.875rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.8rem;
       font-weight: 600;
-      letter-spacing: 0.05em;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
-      color: var(--blue);
-      margin-bottom: 0.75rem;
+      color: var(--amber-dark);
+      margin-bottom: 1rem;
+    }
+
+    .section-label::before {
+      content: '';
+      width: 24px;
+      height: 2px;
+      background: var(--amber);
     }
 
     h2 {
-      font-size: clamp(1.875rem, 3vw, 2.25rem);
-      font-weight: 700;
+      font-family: 'Fraunces', serif;
+      font-size: clamp(2rem, 3.5vw, 2.75rem);
+      font-weight: 600;
       color: var(--navy);
-      line-height: 1.2;
-      margin-bottom: 1rem;
+      line-height: 1.15;
+      margin-bottom: 1.25rem;
       letter-spacing: -0.02em;
     }
 
+    h2 em {
+      font-style: italic;
+      color: var(--amber-dark);
+    }
+
     .section-intro {
-      font-size: 1.05rem;
+      font-size: 1.1rem;
       color: var(--slate);
       line-height: 1.7;
     }
 
     /* About Section */
     .about { 
-      background: var(--white); 
+      background: var(--cream-warm);
+      position: relative;
     }
 
     .about-grid {
       display: grid;
       grid-template-columns: 1.5fr 1fr;
-      gap: 4rem;
+      gap: 5rem;
       align-items: start;
     }
 
     .about-text p {
       color: var(--slate);
       margin-bottom: 1.25rem;
-      line-height: 1.75;
+      line-height: 1.8;
       font-size: 1.05rem;
     }
 
+    .about-text p strong {
+      color: var(--navy);
+      font-weight: 600;
+    }
+
     .about-card {
-      background: var(--gray-50);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 2rem;
+      background: var(--navy);
+      border-radius: 16px;
+      padding: 2.5rem;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 20px 40px rgba(15, 23, 42, 0.15);
+    }
+
+    .about-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 120px;
+      height: 120px;
+      background: var(--amber);
+      opacity: 0.12;
+      border-radius: 0 16px 0 100%;
+    }
+
+    .about-card-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-bottom: 1.5rem;
+      position: relative;
     }
 
     .info-grid {
       display: flex;
       flex-direction: column;
       gap: 1.25rem;
+      position: relative;
     }
 
     .info-item {
       display: flex;
       flex-direction: column;
       gap: 0.25rem;
+      padding-bottom: 1.25rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .info-item:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
     }
 
     .info-label {
-      font-size: 0.8rem;
+      font-size: 0.75rem;
       font-weight: 600;
-      letter-spacing: 0.05em;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
       color: var(--slate-light);
     }
 
     .info-value {
-      font-weight: 600;
-      color: var(--navy);
+      font-weight: 500;
+      color: var(--white);
       font-size: 1rem;
     }
 
     /* Projects Section */
     .projects { 
-      background: var(--gray-50); 
+      background: var(--cream); 
     }
 
     .projects-grid {
@@ -267,45 +552,58 @@
 
     .project-card {
       background: var(--white);
-      border-radius: 12px;
+      border-radius: 16px;
       overflow: hidden;
       border: 1px solid var(--border);
       transition: all 0.3s;
       display: flex;
       flex-direction: column;
+      position: relative;
     }
 
     .project-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 20px 40px rgba(15, 23, 42, 0.08);
-      border-color: var(--blue);
+      transform: translateY(-6px);
+      box-shadow: 0 24px 48px rgba(15, 23, 42, 0.1);
+      border-color: var(--amber);
     }
 
     .project-header {
-      padding: 2rem;
-      background: linear-gradient(135deg, var(--gray-50) 0%, var(--white) 100%);
-      border-bottom: 1px solid var(--border);
+      padding: 2rem 2rem 1rem;
+      position: relative;
+    }
+
+    .project-number {
+      position: absolute;
+      top: 1.5rem;
+      right: 1.5rem;
+      font-family: 'Fraunces', serif;
+      font-size: 2.5rem;
+      font-weight: 600;
+      color: var(--border);
+      line-height: 1;
     }
 
     .project-meta {
-      font-size: 0.8rem;
+      font-size: 0.75rem;
       font-weight: 600;
-      letter-spacing: 0.05em;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
-      color: var(--blue);
+      color: var(--amber-dark);
       margin-bottom: 0.75rem;
     }
 
     .project-title {
-      font-size: 1.35rem;
-      font-weight: 700;
+      font-family: 'Fraunces', serif;
+      font-size: 1.4rem;
+      font-weight: 600;
       color: var(--navy);
       margin-bottom: 0;
       letter-spacing: -0.01em;
+      line-height: 1.25;
     }
 
     .project-body { 
-      padding: 2rem;
+      padding: 1rem 2rem 2rem;
       flex: 1;
       display: flex;
       flex-direction: column;
@@ -330,14 +628,14 @@
       font-size: 0.75rem;
       font-weight: 600;
       padding: 0.35rem 0.75rem;
-      border-radius: 6px;
-      background: var(--gray-100);
-      color: var(--slate);
+      border-radius: 100px;
+      background: var(--cream-warm);
+      color: var(--navy);
       border: 1px solid var(--border);
     }
 
     .project-card.featured {
-      border: 2px solid var(--blue);
+      border: 2px solid var(--amber);
       position: relative;
     }
 
@@ -348,18 +646,22 @@
       right: 1.5rem;
       font-size: 0.7rem;
       font-weight: 700;
-      letter-spacing: 0.05em;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
-      color: var(--blue);
-      background: var(--white);
-      border: 1.5px solid var(--blue);
-      padding: 0.25rem 0.65rem;
-      border-radius: 4px;
-      z-index: 1;
+      color: var(--amber-dark);
+      background: var(--amber);
+      color: var(--navy);
+      padding: 0.3rem 0.7rem;
+      border-radius: 100px;
+      z-index: 2;
+    }
+
+    .project-card.featured .project-number {
+      display: none;
     }
 
     .project-card.featured .project-header {
-      background: linear-gradient(135deg, #eff6ff 0%, var(--white) 100%);
+      background: linear-gradient(135deg, rgba(245, 158, 11, 0.08) 0%, transparent 100%);
     }
 
     .project-link {
@@ -368,52 +670,112 @@
       gap: 0.5rem;
       font-size: 0.9rem;
       font-weight: 600;
-      color: var(--blue);
+      color: var(--navy);
       text-decoration: none;
-      transition: gap 0.2s;
+      padding: 0.75rem 1.25rem;
+      background: var(--cream-warm);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      transition: all 0.2s;
+      align-self: flex-start;
     }
 
     .project-link:hover {
-      gap: 0.75rem;
+      background: var(--amber);
+      border-color: var(--amber);
+      transform: translateX(2px);
     }
 
     .project-link svg {
-      width: 16px;
-      height: 16px;
+      width: 14px;
+      height: 14px;
+      transition: transform 0.2s;
+    }
+
+    .project-link:hover svg {
+      transform: translate(2px, -2px);
+    }
+
+    .project-card.placeholder {
+      background: var(--cream-warm);
+      border-style: dashed;
+    }
+
+    .project-card.placeholder .project-title {
+      color: var(--slate);
     }
 
     /* Skills Section */
     .skills { 
-      background: var(--white); 
+      background: var(--white);
+      position: relative;
     }
 
     .skills-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 2rem;
+      gap: 1.5rem;
     }
 
     .skill-card {
       padding: 2rem;
-      background: var(--gray-50);
+      background: var(--cream);
       border: 1px solid var(--border);
       border-radius: 12px;
+      transition: all 0.25s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .skill-card:hover {
+      transform: translateY(-3px);
+      border-color: var(--amber);
+      box-shadow: 0 12px 24px rgba(15, 23, 42, 0.06);
+    }
+
+    .skill-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--amber);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s;
+    }
+
+    .skill-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .skill-icon {
+      width: 40px;
+      height: 40px;
+      background: var(--amber);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+      margin-bottom: 1.25rem;
+      color: var(--navy);
     }
 
     .skill-title {
-      font-size: 1rem;
-      font-weight: 700;
+      font-family: 'Fraunces', serif;
+      font-size: 1.15rem;
+      font-weight: 600;
       color: var(--navy);
       margin-bottom: 1.25rem;
-      padding-bottom: 0.75rem;
-      border-bottom: 2px solid var(--blue);
     }
 
     .skill-list {
       list-style: none;
       display: flex;
       flex-direction: column;
-      gap: 0.75rem;
+      gap: 0.6rem;
     }
 
     .skill-list li {
@@ -421,16 +783,16 @@
       color: var(--slate);
       display: flex;
       align-items: center;
-      gap: 0.75rem;
+      gap: 0.65rem;
       padding-left: 0.25rem;
     }
 
     .skill-list li::before {
       content: '';
-      width: 6px;
-      height: 6px;
+      width: 5px;
+      height: 5px;
       border-radius: 50%;
-      background: var(--blue);
+      background: var(--amber);
       flex-shrink: 0;
     }
 
@@ -438,11 +800,40 @@
     .contact {
       background: var(--navy);
       text-align: center;
+      position: relative;
+      overflow: hidden;
     }
 
-    .contact h2,
-    .contact .section-label { 
+    .contact::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: 
+        linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(ellipse at center, black 0%, transparent 70%);
+      -webkit-mask-image: radial-gradient(ellipse at center, black 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .contact .section-header {
+      margin-left: auto;
+      margin-right: auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .contact .section-label {
+      justify-content: center;
+    }
+
+    .contact h2 { 
       color: var(--white); 
+    }
+
+    .contact h2 em {
+      color: var(--amber);
     }
 
     .contact .section-intro {
@@ -451,10 +842,12 @@
 
     .contact-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.25rem;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1rem;
       max-width: 900px;
       margin: 0 auto;
+      position: relative;
+      z-index: 1;
     }
 
     .contact-card {
@@ -463,40 +856,51 @@
       justify-content: center;
       gap: 0.75rem;
       padding: 1.25rem 1.5rem;
-      background: rgba(255, 255, 255, 0.05);
+      background: rgba(255, 255, 255, 0.04);
       border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 8px;
+      border-radius: 10px;
       color: var(--white);
       text-decoration: none;
       font-size: 0.95rem;
       font-weight: 500;
-      transition: all 0.2s;
+      transition: all 0.25s;
     }
 
     .contact-card:hover {
-      background: var(--blue);
-      border-color: var(--blue);
-      transform: translateY(-2px);
+      background: var(--amber);
+      border-color: var(--amber);
+      color: var(--navy);
+      transform: translateY(-3px);
     }
 
     .contact-icon {
-      font-size: 1.25rem;
+      font-size: 1.15rem;
     }
 
     /* Footer */
     footer {
-      background: #0f172a;
+      background: #0a0f1a;
       text-align: center;
       padding: 2rem;
       font-size: 0.875rem;
       color: var(--slate-light);
     }
 
+    footer span {
+      color: var(--amber);
+    }
+
     /* Responsive */
-    @media (max-width: 768px) {
+    @media (max-width: 900px) {
+      .hero-content,
       .about-grid { 
         grid-template-columns: 1fr; 
-        gap: 2.5rem; 
+        gap: 3rem; 
+      }
+
+      .hero-visual {
+        justify-self: start;
+        max-width: 100%;
       }
       
       .nav-links { 
@@ -508,8 +912,13 @@
         padding: 6rem 1.5rem 3rem;
       }
 
+      .hero-meta {
+        flex-wrap: wrap;
+        gap: 1.5rem;
+      }
+
       section {
-        padding: 3rem 1.5rem;
+        padding: 4rem 1.5rem;
       }
     }
 
@@ -526,21 +935,60 @@
     <li><a href="#about">About</a></li>
     <li><a href="#projects">Projects</a></li>
     <li><a href="#skills">Skills</a></li>
-    <li><a href="#contact">Contact</a></li>
+    <li><a href="#contact" class="nav-cta">Contact</a></li>
   </ul>
 </nav>
 
 <section class="hero" id="home">
   <div class="hero-content">
-    <div class="hero-eyebrow">Student Portfolio</div>
-    <h1>Finn Meyer</h1>
-    <p class="hero-subtitle">
-      Manufacturing and Supply Chain Management student at Western Washington University,
-      focused on logistics optimization, procurement strategy, and data-driven operations.
-    </p>
-    <div class="hero-cta">
-      <a href="#projects" class="btn-primary">View Projects</a>
-      <a href="#contact" class="btn-secondary">Get in Touch</a>
+    <div>
+      <div class="hero-eyebrow">Open to Opportunities</div>
+      <h1>Manufacturing & supply chain, <em>reimagined</em>.</h1>
+      <p class="hero-subtitle">
+        I'm a student at Western Washington University focused on logistics optimization,
+        procurement strategy, and the data-driven operations shaping modern supply networks.
+      </p>
+      <div class="hero-cta">
+        <a href="#projects" class="btn-primary">View Projects</a>
+        <a href="#contact" class="btn-secondary">Get in Touch</a>
+      </div>
+      <div class="hero-meta">
+        <div class="meta-item">
+          <span class="meta-label">University</span>
+          <span class="meta-value">WWU</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Graduating</span>
+          <span class="meta-value">2026</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Based in</span>
+          <span class="meta-value">Bellingham, WA</span>
+        </div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="visual-card">
+        <div class="visual-header">
+          <span class="visual-badge">Featured Work</span>
+          <div class="visual-title">Warehouse Location Optimizer</div>
+          <div class="visual-subtitle">Multi-criteria facility-location tool</div>
+        </div>
+        <div class="visual-stats">
+          <div class="visual-stat">
+            <span class="stat-key">US Cities Evaluated</span>
+            <span class="stat-val">140<em>+</em></span>
+          </div>
+          <div class="visual-stat">
+            <span class="stat-key">Analysis Method</span>
+            <span class="stat-val">K-medoids</span>
+          </div>
+          <div class="visual-stat">
+            <span class="stat-key">Status</span>
+            <span class="stat-val">Live</span>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -550,9 +998,9 @@
     <div class="about-grid">
       <div class="about-text">
         <div class="section-label">About Me</div>
-        <h2>Building a career in supply chain</h2>
+        <h2>Building a career in <em>supply chain</em>.</h2>
         <p>
-          I'm a Manufacturing and Supply Chain Management student at Western Washington University
+          I'm a Manufacturing and Supply Chain Management student at <strong>Western Washington University</strong>
           with a passion for solving complex logistics and operations problems.
           Through coursework and projects, I've developed hands-on experience
           analyzing supply networks and identifying opportunities for efficiency.
@@ -563,10 +1011,12 @@
           I'm looking for opportunities to apply these skills in the real world.
         </p>
         <p>
-          Outside of school, I enjoy [add a personal touch here].
+          Outside of school, I enjoy <strong>fishing, mountain biking, snowboarding, and hiking</strong> —
+          anything that gets me outside in the Pacific Northwest.
         </p>
       </div>
       <div class="about-card">
+        <div class="about-card-label">Quick Facts</div>
         <div class="info-grid">
           <div class="info-item">
             <span class="info-label">University</span>
@@ -598,10 +1048,10 @@
   <div class="container">
     <div class="section-header">
       <div class="section-label">Portfolio</div>
-      <h2>Featured Projects</h2>
+      <h2>Featured <em>projects</em>.</h2>
       <p class="section-intro">
-        A selection of projects from my coursework at WWU, showcasing
-        analytical and strategic thinking in supply chain contexts.
+        A selection of projects showcasing analytical and strategic
+        thinking in supply chain and operations contexts.
       </p>
     </div>
     <div class="projects-grid">
@@ -631,15 +1081,16 @@
         </div>
       </div>
 
-      <div class="project-card">
+      <div class="project-card placeholder">
         <div class="project-header">
-          <div class="project-meta">SCM 101 · Intro to Supply Chain</div>
-          <div class="project-title">Project Title Here</div>
+          <div class="project-number">02</div>
+          <div class="project-meta">Coming Soon</div>
+          <div class="project-title">Inventory & Forecasting Analysis</div>
         </div>
         <div class="project-body">
           <p class="project-desc">
-            Describe what you did in 2–3 sentences. What was the problem?
-            What analysis did you do? What did you find or recommend?
+            A project exploring inventory optimization and demand forecasting
+            techniques applied to a real-world scenario. Details to come.
           </p>
           <div class="project-tags">
             <span class="tag">Inventory</span>
@@ -649,15 +1100,16 @@
         </div>
       </div>
 
-      <div class="project-card">
+      <div class="project-card placeholder">
         <div class="project-header">
-          <div class="project-meta">SCM 201 · Logistics Management</div>
-          <div class="project-title">Project Title Here</div>
+          <div class="project-number">03</div>
+          <div class="project-meta">Coming Soon</div>
+          <div class="project-title">Logistics Network Study</div>
         </div>
         <div class="project-body">
           <p class="project-desc">
-            Describe what you did in 2–3 sentences. What was the problem?
-            What analysis did you do? What did you find or recommend?
+            Analysis of a logistics network with a focus on routing,
+            cost structure, and opportunities for efficiency improvements.
           </p>
           <div class="project-tags">
             <span class="tag">Routing</span>
@@ -667,15 +1119,16 @@
         </div>
       </div>
 
-      <div class="project-card">
+      <div class="project-card placeholder">
         <div class="project-header">
-          <div class="project-meta">SCM 310 · Procurement Strategy</div>
-          <div class="project-title">Project Title Here</div>
+          <div class="project-number">04</div>
+          <div class="project-meta">Coming Soon</div>
+          <div class="project-title">Procurement Strategy Case</div>
         </div>
         <div class="project-body">
           <p class="project-desc">
-            Describe what you did in 2–3 sentences. What was the problem?
-            What analysis did you do? What did you find or recommend?
+            A strategic sourcing analysis evaluating vendor selection,
+            contract structure, and risk considerations.
           </p>
           <div class="project-tags">
             <span class="tag">Sourcing</span>
@@ -693,7 +1146,7 @@
   <div class="container">
     <div class="section-header">
       <div class="section-label">Capabilities</div>
-      <h2>Skills & Tools</h2>
+      <h2>Skills & <em>tools</em>.</h2>
       <p class="section-intro">
         Technical and analytical skills developed through coursework,
         projects, and self-study.
@@ -701,33 +1154,40 @@
     </div>
     <div class="skills-grid">
       <div class="skill-card">
+        <div class="skill-icon">⚙</div>
         <div class="skill-title">Software & Tools</div>
         <ul class="skill-list">
           <li>Microsoft Excel</li>
-          <li>Power BI</li>
+          <li>Tableau</li>
           <li>SAP (introductory)</li>
           <li>Google Sheets</li>
         </ul>
       </div>
       <div class="skill-card">
+        <div class="skill-icon">📦</div>
         <div class="skill-title">Supply Chain</div>
         <ul class="skill-list">
           <li>Demand Forecasting</li>
           <li>Inventory Management</li>
           <li>Procurement & Sourcing</li>
           <li>Logistics Planning</li>
+          <li>Lean Manufacturing</li>
+          <li>Kaizen</li>
         </ul>
       </div>
       <div class="skill-card">
+        <div class="skill-icon">📊</div>
         <div class="skill-title">Analysis</div>
         <ul class="skill-list">
           <li>Process Mapping</li>
+          <li>Value Stream Mapping</li>
           <li>Cost-Benefit Analysis</li>
           <li>Data Visualization</li>
           <li>Root Cause Analysis</li>
         </ul>
       </div>
       <div class="skill-card">
+        <div class="skill-icon">💡</div>
         <div class="skill-title">Soft Skills</div>
         <ul class="skill-list">
           <li>Project Management</li>
@@ -744,23 +1204,22 @@
   <div class="container">
     <div class="section-header">
       <div class="section-label">Get In Touch</div>
-      <h2>Let's Connect</h2>
+      <h2>Let's <em>connect</em>.</h2>
       <p class="section-intro">
-        I'm actively looking for internships and entry-level opportunities in
-        supply chain. Feel free to reach out!
+        I am open to job opportunities.
       </p>
     </div>
     <div class="contact-grid">
       <a href="mailto:finngrantmeyer@gmail.com" class="contact-card">
-        <span class="contact-icon">✉️</span>
+        <span class="contact-icon">✉</span>
         <span>finngrantmeyer@gmail.com</span>
       </a>
       <a href="https://www.linkedin.com/in/finn-meyer1" class="contact-card" target="_blank" rel="noopener">
-        <span class="contact-icon">💼</span>
+        <span class="contact-icon">🔗</span>
         <span>LinkedIn Profile</span>
       </a>
       <a href="https://github.com/finngmeyer" class="contact-card" target="_blank" rel="noopener">
-        <span class="contact-icon">💻</span>
+        <span class="contact-icon">⚡</span>
         <span>GitHub Projects</span>
       </a>
     </div>
@@ -768,7 +1227,7 @@
 </section>
 
 <footer>
-  © 2026 Finn Meyer · Manufacturing & Supply Chain Management
+  © 2026 Finn Meyer · Built with <span>♦</span> in Bellingham, WA
 </footer>
 
 </body>
