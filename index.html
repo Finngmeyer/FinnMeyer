@@ -274,9 +274,9 @@ nav{
 .project-bento{
   display:grid;
   grid-template-columns:1fr 1fr;
-  gap:1px;
-  background:var(--border-med);
-  border:1px solid var(--border-med);
+  gap:16px;
+  background:transparent;
+  border:none;
 }
 
 /* featured cards span full row */
@@ -288,14 +288,18 @@ nav{
 .project-bento .solo{grid-column:span 2}
 
 .project-card-b{
-  background:var(--bg);
+  background:#FDFCF9;
   cursor:pointer;position:relative;
-  transition:background .22s;outline:none;
+  transition:background .22s, box-shadow .22s;outline:none;
   display:flex;flex-direction:column;
-  padding:2.5rem;gap:1.25rem;
-  min-height:210px;
+  padding:1.6rem 2rem;gap:.9rem;
+  min-height:160px;
+  box-shadow:0 1px 6px rgba(0,0,0,.06),0 0 0 1px rgba(0,0,0,.05);
 }
-.project-card-b:hover,.project-card-b:focus-visible{background:var(--bg-card)}
+.project-card-b:hover,.project-card-b:focus-visible{
+  background:#FBF9F5;
+  box-shadow:0 4px 18px rgba(0,0,0,.1),0 0 0 1px rgba(0,0,0,.07);
+}
 .project-card-b::after{
   content:'';position:absolute;
   bottom:0;left:0;right:0;height:2px;
@@ -489,44 +493,28 @@ footer span{
 
 /* ─── CARD VISUAL ACCENTS ─── */
 .proj-band{
-  height:72px;
-  margin:-2.5rem -2.5rem 1.5rem;
-  display:flex;align-items:center;padding:0 2.5rem;
+  height:auto;
+  margin:-1.6rem -2rem 1.25rem;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:.7rem 1.75rem;
   position:relative;overflow:hidden;
   border-bottom:1px solid var(--border);
+  border-top:3px solid var(--band-bg,var(--accent));
 }
-.proj-band::before{
-  content:'';position:absolute;
-  inset:0;
-  background:var(--band-bg,var(--bg-card));
-  opacity:.55;
-}
-/* subtle etched pattern per band */
-.proj-band::after{
-  content:'';position:absolute;
-  inset:0;
-  background-image:var(--band-pattern);
-  background-size:var(--band-size,20px 20px);
-  opacity:.18;
-}
+.proj-band::before,.proj-band::after{display:none}
 .proj-band-icon{
-  position:relative;z-index:1;
-  width:44px;height:44px;
-  border:1px solid rgba(0,0,0,.12);
   display:flex;align-items:center;justify-content:center;
-  color:var(--band-color,var(--muted));
-  background:rgba(249,248,244,.7);
-  transition:border-color .22s,color .22s;
+  color:var(--band-bg,var(--muted));
+  opacity:.7;
+  transition:opacity .22s;
 }
 .project-card-b:hover .proj-band-icon,
-.project-card-b:focus-visible .proj-band-icon{
-  border-color:var(--band-color,var(--accent));
-  color:var(--band-color,var(--accent));
-}
+.project-card-b:focus-visible .proj-band-icon{opacity:1}
 .proj-band-num{
-  position:absolute;right:2.5rem;bottom:.6rem;z-index:1;
   font-family:'IBM Plex Mono',monospace;
-  font-size:.55rem;letter-spacing:.14em;color:rgba(0,0,0,.18);
+  font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--muted);
+  position:static;
 }
 /* remove old header */
 .proj-header{display:none}
@@ -814,7 +802,7 @@ footer span{
     <div class="tab-panel" id="panel-ai">
       <div class="project-bento">
 
-        <div class="project-card-b featured" onclick="openModal('spotify')" tabindex="0" role="button" aria-label="View Spotify Recommendation Lab">
+        <div class="project-card-b" onclick="openModal('spotify')" tabindex="0" role="button" aria-label="View Spotify Recommendation Lab">
           <div class="proj-band band-spotify">
             <div class="proj-band-icon">
               <svg width="22" height="22" viewBox="0 0 26 26" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M10 19V8l13-3.5V15"/><circle cx="7.5" cy="19" r="2.5"/><circle cx="20.5" cy="15" r="2.5"/></svg>
